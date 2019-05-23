@@ -39,6 +39,14 @@ namespace WeatherWidget
             DragMove();
         }
 
-        
+        private void Window_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ContextMenu.IsOpen = true;
+        }
+
+        private void MenuItemClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

@@ -7,10 +7,49 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="150" Width="300" AllowsTransparency="True"
         WindowStyle="None" ShowInTaskbar="False" MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        MouseRightButtonDown="Window_MouseRightButtonDown"
         >
     <Grid>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18">Ty pidor :)</TextBlock>
+        <Grid.ContextMenu>
+            <ContextMenu Name="ContextMenu">
+                <MenuItem Name="MenuItemClose" Header="Close" Click="MenuItemClose_Click"></MenuItem>
+                <MenuItem Header="Ty pidor"></MenuItem>
+            </ContextMenu>
+        </Grid.ContextMenu>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="1.1*"></RowDefinition>
+            <RowDefinition Height="0.8*"></RowDefinition>
+            <RowDefinition Height="0.8*"></RowDefinition>
+            <RowDefinition Height="0.8*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.RowSpan="6">
+            <Button Height="16" Width="16" HorizontalAlignment="Left">
+                <Image Source="Image/Sinoptik.png"></Image>
+            </Button>
+            <Button Height="16" Width="16" HorizontalAlignment="Left">
+                <Image Source="Image/Gismeteo.png"></Image>
+            </Button>
+            <Button Height="16" Width="16" HorizontalAlignment="Left">
+                <Image Source="Image/AccuWeather.png"></Image>
+            </Button>
+            <Button Height="16" Width="16" HorizontalAlignment="Left">K</Button>
+        </StackPanel>
         <Button Name="btnExit" Click="BtnExit_Click" Width="20" Height="20" BorderThickness="0" Background="White"
-                FontSize="10" Content="X" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="280,0,0,130"></Button>
+                Grid.Column="8" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top"
+                FontSize="10" Content="X" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Button>
+        
     </Grid>
 </Window>
