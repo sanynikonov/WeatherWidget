@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherWidget"
         mc:Ignorable="d"
-        Title="MainWindow" Height="100" Width="200" AllowsTransparency="True"
-        WindowStyle="None" ShowInTaskbar="False"
+        Title="MainWindow" Height="150" Width="300" AllowsTransparency="True"
+        WindowStyle="None" ShowInTaskbar="False" MouseLeftButtonDown="Window_MouseLeftButtonDown"
         >
     <Grid>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Ty pidor :)</TextBlock>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18">Ty pidor :)</TextBlock>
+        <Button Name="btnExit" Click="BtnExit_Click" Width="20" Height="20" BorderThickness="0" Background="White"
+                FontSize="10" Content="X" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="280,0,0,130"></Button>
     </Grid>
 </Window>

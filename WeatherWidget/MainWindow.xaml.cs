@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace WeatherWidget
 {
@@ -20,9 +22,23 @@ namespace WeatherWidget
     /// </summary>
     public partial class MainWindow : Window
     {
+        const int DISTANCE = 10;
+
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        private void BtnExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        
     }
 }
