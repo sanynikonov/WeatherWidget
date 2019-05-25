@@ -8,8 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/accuweather.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/gismeteo.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/sinoptik.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/cloudy.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/rainy.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/snowy.jpeg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/sunny.png")]
 
 

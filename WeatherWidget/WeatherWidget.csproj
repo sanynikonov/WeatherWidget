@@ -117,11 +117,38 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Image\BackButton.png" />
+    <Resource Include="Image\NextButton.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\AccuWeather.png" />
     <Resource Include="Image\Gismeteo.png" />
     <Resource Include="Image\Sinoptik.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\RainFalse.png" />
+    <Resource Include="Image\RainTrue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\CoatFalse.png" />
+    <Resource Include="Image\CoatTrue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\RainFalse1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\CoatFalse1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\BackButton1.png" />
+    <Resource Include="Image\NextButton1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\Cloudy.jpg" />
+    <Resource Include="Image\Rainy.jpg" />
+    <Resource Include="Image\Snowy.jpeg" />
+    <Resource Include="Image\Sunny.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.110.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.110.0\build\net46\System.Data.SQLite.Core.targets')" />
