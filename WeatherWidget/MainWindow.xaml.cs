@@ -22,11 +22,11 @@ namespace WeatherWidget
     /// </summary>
     public partial class MainWindow : Window
     {
-        const int DISTANCE = 10;
-
         public MainWindow()
         {
             InitializeComponent();
+            
+            DataContext = new ViewModel();
         }
 
         private void BtnExit_Click(object sender, RoutedEventArgs e)

@@ -5,15 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherWidget"
         mc:Ignorable="d"
-        Name="Window" Height="120" Width="240" AllowsTransparency="True"
+        Name="Window" Height="130" Width="250" AllowsTransparency="True"
         WindowStyle="None" ShowInTaskbar="False" MouseLeftButtonDown="Window_MouseLeftButtonDown"
         MouseRightButtonDown="Window_MouseRightButtonDown" Background="White"
         >
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
     <Grid>
         <Grid.ContextMenu>
-            <ContextMenu Name="ContextMenu">
-                <MenuItem Name="MenuItemClose" Header="Close" Click="MenuItemClose_Click"></MenuItem>
-                <MenuItem Header="Ty pidor"></MenuItem>
+            <ContextMenu Name="ContextMenu" DataContext="{Binding ViewModel}">
+                <MenuItem Name="MenuItemClose" Header="Close" Click="MenuItemClose_Click" />
+                <MenuItem Header="Golosui za Poroshenka" />
             </ContextMenu>
         </Grid.ContextMenu>
         <Grid.ColumnDefinitions>            
@@ -24,48 +27,32 @@
             <RowDefinition Height="0.25*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <ComboBox Width="150">
-                <ComboBoxItem IsSelected="True">
-                    <StackPanel Orientation="Horizontal">
-                        <Button BorderThickness="0" Background="{Binding ElementName=Window, Path=Background}">
-                            <Image Source="Image/Gismeteo.png"></Image>
-                        </Button>
-                        <TextBlock>Gismeteo.ua</TextBlock>
-                    </StackPanel>
-                </ComboBoxItem>
-                <ComboBoxItem>
-                    <StackPanel Orientation="Horizontal">
-                        <Button BorderThickness="0" Background="{Binding ElementName=Window, Path=Background}">
-                            <Image Source="Image/Sinoptik.png"></Image>
-                        </Button>
-                        <TextBlock>Sinoptik.ua</TextBlock>
-                    </StackPanel>
-                </ComboBoxItem>
-                <ComboBoxItem>
-                    <StackPanel Orientation="Horizontal">
-                        <Button BorderThickness="0" Background="{Binding ElementName=Window, Path=Background}">
-                            <Image Source="Image/Accuweather.png"></Image>
-                        </Button>
-                        <TextBlock>AccuWeather.com</TextBlock>
-                    </StackPanel>
-                </ComboBoxItem>
-            </ComboBox>
-            
-            
+            <Button Margin="2,2,2,2" Background="White" BorderThickness="0"
+                    Command="{Binding OpenWeatherCommand}" ToolTip="OpenWeather.org">
+                <Image Source="Image/openweather.png"></Image>
+            </Button>
+            <Button Margin="2,2,2,2" Background="White" BorderThickness="0"
+                    Command="{Binding ApixuCommand}" ToolTip="Apixu.com">
+                <Image Source="Image/apixu.png" ></Image>
+            </Button>
+            <Button Margin="2,2,2,2" Background="White" Content="A" Width="21" BorderThickness="0" ToolTip="Average.our"
+                    HorizontalAlignment="Center" FontSize="13" Command="{Binding AverageWeatherCommand}"/>
         </StackPanel>
         
         
-        <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Image Source="Image/RainFalse1.png"></Image>
-            <Image Source="Image/CoatFalse1.png"></Image>
+        <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right"
+                    DataContext="{Binding SelectedWeatherDay}">
+            <Image Source="Image/RainFalse1.png" Visibility="{Binding Path=Rainy, Converter={StaticResource BooleanToVisibilityConverter} }"></Image>
+            <Image Source="Image/CoatFalse1.png" Visibility="{Binding Path=Snowy, Converter={StaticResource BooleanToVisibilityConverter} }"></Image>
         </StackPanel>
-        <Grid Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0">
+        <Grid Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0" DataContext="{Binding SelectedWeatherDay, UpdateSourceTrigger=PropertyChanged}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="0.5*"></ColumnDefinition>
-                <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -75,17 +62,24 @@
                 <Button Content="&lt;" Margin="0, 0, 5, 0" Width="20" Height="20" BorderThickness="0"
                         Background="{Binding ElementName=Window, Path=Background}"></Button>
                 <TextBlock Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center"
-                       VerticalAlignment="Center" FontSize="20" FontWeight="Bold">Za warudo, 26.05</TextBlock>
+                       VerticalAlignment="Center" FontSize="16" FontWeight="Bold" Text="{Binding Date, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                 <Button Content="&gt;" Margin="5, 0, 0, 0" Width="20" Height="20" BorderThickness="0"
                         Background="{Binding ElementName=Window, Path=Background}"></Button>
             </StackPanel>
             <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Temp, °C</TextBlock>
             <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Pressure, mm</TextBlock>
-            <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Wind, m/s</TextBlock>
-            <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">-12.7</TextBlock>
-            <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">760</TextBlock>
-            <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">2.0</TextBlock>
-            <Image Grid.Column="3" Grid.RowSpan="3" Grid.Row="1" Source="Image/Cloudy.jpg"></Image>
+            <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Wind, °</TextBlock>
+            <TextBlock Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Wind, m/s</TextBlock>
+            
+            <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Text="{Binding Temperature, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Text="{Binding Pressure, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Text="{Binding WindDirection, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Text="{Binding SpeedOfWind, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <Image Grid.Column="3" Grid.RowSpan="4" Grid.Row="1" Source="{Binding Sky}"></Image>
         </Grid>
         
 
